@@ -23,10 +23,6 @@ def download_video(options) :
     else:
         raise Exception(f'Video in {options["resolution"]} is not available for {yt.title}')
 
-    # Optional: Include audio download (remove the '-f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]"' part if not needed)
-    # To get the best quality (video and audio), you can use the following:
-    # yt.streams.get_highest_resolution().download(output_path='path_to_save_video')
-
 if __name__ == "__main__" :
     try :
         import json

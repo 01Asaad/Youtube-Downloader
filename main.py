@@ -24,7 +24,6 @@ def download_video():
     options["only_audio"] = audio_only
     options["resolution"] = resolution
     
-    # Create a separate thread for the download process
     download_thread = threading.Thread(target=download_threaded, args=(options,))
     download_thread.start()
 
@@ -36,14 +35,11 @@ def download_threaded(options):
     except Exception as e:
         status_label.config(text=f"Failed to download: {str(e)}")
     finally:
-        # Enable the "Download" button after download is complete
         download_button.config(state=tk.NORMAL)
 
-# Create a Tkinter window
 window = tk.Tk()
 window.title("YouTube Video Downloader")
 
-# Create and pack widgets
 link_label = ttk.Label(window, text="Enter YouTube Link:")
 link_label.pack()
 link_entry = ttk.Entry(window, width=40)
@@ -51,7 +47,7 @@ link_entry.pack()
 
 resolution_label = ttk.Label(window, text="Select Resolution:")
 resolution_label.pack()
-resolutions = ['720p', '480p', '360p', '240p']
+resolutions = ['1080p', '720p', '480p', '360p', '240p', '144p']
 resolution_var = tk.StringVar()
 resolution_dropdown = ttk.Combobox(window, textvariable=resolution_var, values=resolutions)
 resolution_dropdown.pack()
@@ -66,8 +62,6 @@ download_button.pack()
 status_label = ttk.Label(window, text="")
 status_label.pack()
 
-# Start with resolution dropdown enabled
 toggle_resolution_dropdown()
 
-# Start the GUI event loop
 window.mainloop()
